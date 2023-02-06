@@ -2,7 +2,7 @@ module.exports = {
   mode: "jit",
   content: [
     './app/**/*.{js,ts,jsx,tsx}',
-    './page/**/*.{js,ts,jsx,tsx}',
+    './pages/**/*.{js,ts,jsx,tsx}',
     './ui/**/*.{js,ts,jsx,tsx}',
   ],
   darkMode: "class", // or 'media' or 'class'
@@ -14,9 +14,9 @@ module.exports = {
     extend: {},
   },
   corePlugins: {
-    // preflight: false,
+    preflight: false,
   },
   plugins: [
-    require('@tailwindcss/forms'),
+    // require('@tailwindcss/forms'),
   ],
 };
