@@ -1,26 +1,6 @@
-import { createYoga, createSchema } from 'graphql-yoga'
-
-const typeDefs = /* GraphQL */ `
-  type Query {
-    users: [User!]!
-  }
-  type User {
-    name: String
-  }
-`
-
-const resolvers = {
-  Query: {
-    users() {
-      return [{ name: 'Nextjs' }]
-    },
-  },
-}
-
-const schema = createSchema({
-  typeDefs,
-  resolvers,
-})
+import 'reflect-metadata'
+import { createYoga } from 'graphql-yoga'
+import { schema } from '../../lib/schema'
 
 export const config = {
   api: {
