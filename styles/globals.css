@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  button {
+    border: 1px solid;
+    background: #eee;
+  }
+  input,
+  textarea,
+  button {
+    border-radius: 4px;
+  }
+}
