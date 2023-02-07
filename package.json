@@ -1,5 +1,9 @@
 {
   "private": true,
+  "engines": {
+    "node": ">=16.19.0",
+    "pnpm": ">=7.16.0"
+  },
   "scripts": {
     "commit": "git-cz",
     "dev": "next",
@@ -16,6 +20,7 @@
     "@emotion/styled": "11.10.5",
     "@mui/icons-material": "5.11.0",
     "@mui/material": "5.11.7",
+    "@next-auth/prisma-adapter": "1.0.5",
     "@prisma/client": "4.9.0",
     "@urql/core": "3.1.1",
     "autoprefixer": "10.4.13",

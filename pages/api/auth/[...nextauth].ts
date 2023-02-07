@@ -1,9 +1,18 @@
 import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
+import { PrismaAdapter } from "@next-auth/prisma-adapter"
+import prisma from "../../../lib/prismadb"
+import GitHubProvider from "next-auth/providers/github";
 
 export const authOptions = {
+  adapter: PrismaAdapter(prisma),
   // Configure one or more authentication providers
   providers: [
+    GitHubProvider({
+      clientId: process.env.GITHUB_ID,
+      clientSecret: process.env.GITHUB_SECRET
+    }),
+    /* 
     CredentialsProvider({
       // The name to display on the sign in form (e.g. 'Sign in with...')
       name: '账密',
@@ -35,6 +44,7 @@ export const authOptions = {
         }
       }
     }),
+    */
     // ...add more providers here
   ],
   callbacks: {
