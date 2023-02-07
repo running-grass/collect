@@ -3,6 +3,11 @@ import Link from 'next/link';
 import { gql } from '@urql/core';
 import { client } from '../lib/urql';
 
+import { useSession, signIn, signOut } from "next-auth/react"
+
+import { getServerSession } from "next-auth/next"
+import { authOptions } from "./api/auth/[...nextauth]"
+
 const TodosQuery = gql`
   query {
     users {
@@ -11,26 +16,36 @@ const TodosQuery = gql`
   }
 `;
 
-export default function Index({users}) {
+export default function Index({user}) {
+  // const { data: session } = useSession()
+  if (user) {
+    return (
+      <>
+        Signed in as {user.email} <br />
+        <button onClick={() => signOut()}>退出登录</button>
+      </>
+    )
+  }
   return (
-    <div>
-      {users.map((user, index) => (
-        <div key={index} className="">{user.name} </div>
-      ))}
-      <Link href="/login"><Button>去登录</Button></Link>
-    </div>
+    <>
+      Not signed in <br />
+      <button onClick={() => signIn()}>Sign in</button>
+      {/* <Link href="/login"><Button>去登录</Button></Link> */}
+    </>
   )
 }
 
 export async function getServerSideProps(context) {
-
-  const { data, error } = await client
-  .query(TodosQuery,{})
-  .toPromise();
+  const session = await getServerSession(context.req, context.res, authOptions)
+  
+  // console.log('session', session);
+  // const { data, error } = await client
+  // .query(TodosQuery,{})
+  // .toPromise();
 
   return {
     props: {
-      users: data ? data.users : []
+      user: session ? session.user : null
     },
   }
 }

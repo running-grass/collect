@@ -9,6 +9,7 @@
 - prisma ORM框架
 - type-graphql 代码优先的graphql定义
 - graphql-yoga graphql服务端，自带一个graphiql
+- nextauth.js 身份认证和鉴权
 
 ## UI侧
 - React 渲染层
