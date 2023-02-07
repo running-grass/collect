@@ -2,6 +2,9 @@
 
 # 技术栈
 
+## 工程层面
+- pnpm 包管理工具
+- commitlint && husky 规范化git commit 提交
 ## 服务侧
 <!-- 服务端 -->
 - Next.js 整体的框架
@@ -15,6 +18,7 @@
 - React 渲染层
 - mui 组件库
 - mui-icons icon库
+- tailwind css 样式原子类库
 - valtio 前端状态库
 - urql graphql 客户端
 - react-hook-form 表单检验库
