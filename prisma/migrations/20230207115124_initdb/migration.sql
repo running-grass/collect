@@ -1,26 +1,27 @@
 -- CreateTable
 CREATE TABLE "Account" (
-    "id" STRING NOT NULL,
-    "userId" STRING NOT NULL,
-    "type" STRING NOT NULL,
-    "provider" STRING NOT NULL,
-    "providerAccountId" STRING NOT NULL,
-    "refresh_token" STRING,
-    "access_token" STRING,
-    "expires_at" INT4,
-    "token_type" STRING,
-    "scope" STRING,
-    "id_token" STRING,
-    "session_state" STRING,
+    "id" TEXT NOT NULL,
+    "userId" TEXT NOT NULL,
+    "type" TEXT NOT NULL,
+    "provider" TEXT NOT NULL,
+    "providerAccountId" TEXT NOT NULL,
+    "refresh_token" TEXT,
+    "refresh_token_expires_in" INTEGER,
+    "access_token" TEXT,
+    "expires_at" INTEGER,
+    "token_type" TEXT,
+    "scope" TEXT,
+    "id_token" TEXT,
+    "session_state" TEXT,
 
     CONSTRAINT "Account_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Session" (
-    "id" STRING NOT NULL,
-    "sessionToken" STRING NOT NULL,
-    "userId" STRING NOT NULL,
+    "id" TEXT NOT NULL,
+    "sessionToken" TEXT NOT NULL,
+    "userId" TEXT NOT NULL,
     "expires" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "Session_pkey" PRIMARY KEY ("id")
@@ -28,19 +29,19 @@ CREATE TABLE "Session" (
 
 -- CreateTable
 CREATE TABLE "User" (
-    "id" STRING NOT NULL,
-    "name" STRING,
-    "email" STRING,
+    "id" TEXT NOT NULL,
+    "name" TEXT,
+    "email" TEXT,
     "emailVerified" TIMESTAMP(3),
-    "image" STRING,
+    "image" TEXT,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "VerificationToken" (
-    "identifier" STRING NOT NULL,
-    "token" STRING NOT NULL,
+    "identifier" TEXT NOT NULL,
+    "token" TEXT NOT NULL,
     "expires" TIMESTAMP(3) NOT NULL
 );
 
