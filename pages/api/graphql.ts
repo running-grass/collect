@@ -17,13 +17,17 @@ export const config = {
 
 export default createYoga<GetServerSidePropsContext, AuthUserContext>({
   schema,
-  // Needed to be defined explicitly because our endpoint lives at a different path other than `/graphql`
   graphqlEndpoint: '/api/graphql',
   context: async (ctx) => {
     const session = await getServerSession(ctx.req, ctx.res, authOptions)
-    
+    let user;
+    if (session) {
+
+    user = session.user
+    user.id = session.user['id'];
+    }
     return Object.assign(ctx, {
-      user: session && session.user
+      user
     });
   }
 })

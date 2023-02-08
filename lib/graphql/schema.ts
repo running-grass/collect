@@ -25,7 +25,6 @@ class UserResolver {
   @Authorized()
   @Query(returns => User)
   async me(@Ctx("user") user: AuthUser,) {
-    console.log(user);
     
     const r = await prisma.user.findUniqueOrThrow({
       where: { id: user.id}
