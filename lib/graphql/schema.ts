@@ -1,5 +1,6 @@
 import { Authorized, buildSchemaSync, Ctx, Field, ObjectType, Query, Resolver } from 'type-graphql'
 import type { AuthUser } from '../AuthUser';
+import { dbClient } from '../prismadb';
 // import { Container, Service } from "typedi";
 import { authChecker } from './authChecker';
 
@@ -26,8 +27,8 @@ class UserResolver {
   @Query(returns => User)
   async me(@Ctx("user") user: AuthUser,) {
     
-    const r = await prisma.user.findUniqueOrThrow({
-      where: { id: user.id}
+    const r = await dbClient.user.findUniqueOrThrow({
+      where: { id: user.id }
     });
     return r;
   }
