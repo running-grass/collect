@@ -40,3 +40,5 @@ yarn-error.log*
 .vscode
 .local
 styles/dist.css
+
+.log

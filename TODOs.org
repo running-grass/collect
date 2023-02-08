@@ -1,9 +1,11 @@
 
 * DONE graphql 增加登录检验
+CLOSED: [2023-02-08 Wed 13:53]
 
 * TODO 前端持久化登录状态和用户信息
 
 * DONE 建立用户表，使用真正的注册登录
+CLOSED: [2023-02-08 Wed 13:53]
 
 * TODO 用户管理页面，增加 token 的管理
 
