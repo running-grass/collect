@@ -1,10 +1,10 @@
-import NextAuth from "next-auth"
+import NextAuth, { NextAuthOptions } from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import prisma from "../../../lib/prismadb"
 import GitHubProvider from "next-auth/providers/github";
 
-export const authOptions = {
+export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   // Configure one or more authentication providers
   providers: [
@@ -12,45 +12,12 @@ export const authOptions = {
       clientId: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET
     }),
-    /* 
-    CredentialsProvider({
-      // The name to display on the sign in form (e.g. 'Sign in with...')
-      name: '账密',
-      // The credentials is used to generate a suitable form on the sign in page.
-      // You can specify whatever fields you are expecting to be submitted.
-      // e.g. domain, username, password, 2FA token, etc.
-      // You can pass any HTML attribute to the <input> tag through the object.
-      credentials: {
-        username: { label: "用户名", type: "text", placeholder: "grass" },
-        password: { label: "密码", type: "password", placeholder: 'grass' }
-      },
-      async authorize(credentials, req) {
-        // You need to provide your own logic here that takes the credentials
-        // submitted and returns either a object representing a user or value
-        // that is false/null if the credentials are invalid.
-        // e.g. return { id: 1, name: 'J Smith', email: 'jsmith@example.com' }
-        // You can also use the `req` object to obtain additional parameters
-        // (i.e., the request IP address)
-        const { username, password } = credentials;
-        if (username === 'grass' && password === 'grass') {
-          return {
-            id: 1,
-            name: 'grass',
-            email: '467195537@qq.com',
-            image: "",
-          }
-        } else {
-          return Promise.resolve(null);
-        }
-      }
-    }),
-    */
-    // ...add more providers here
   ],
   callbacks: {
     async session({ session, token, user }) {
+      session.user['id'] = user.id
       return session
-    }
+    },
   }
 }
 
